@@ -13,9 +13,15 @@ export function LoginView({ navigation } : { navigation: RouterProps}) {
     <SafeAreaView style={styles.container}>
       <ImageBackground source={logo} resizeMode="cover" style={styles.background}/>
     <View style={styles.buttonContainer}>
-           
-  
-        <Pressable style={styles.button} onPress={() => navigation.navigate(GMINA_VIEW)}>
+
+        <Text style={styles.title}>Kompostonosz</Text>     
+
+        <Pressable style={({ pressed }) => [
+          {
+            backgroundColor: pressed
+              ? 'rgb(210, 230, 255)'
+              : 'white'
+          },styles.button]} onPress={() => navigation.navigate(GMINA_VIEW)}>
         <Image style={styles.google} source={google} />
         <Text style={styles.text}>Sign in with google</Text>
         </Pressable>
@@ -28,12 +34,23 @@ export function LoginView({ navigation } : { navigation: RouterProps}) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+
+  container: {
+    flex:1 ,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+
+  title:{
+    marginTop:40,
+    fontSize:40,
+    fontWeight:"bold",
+    textAlign: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 'auto',
+  },
+
     background:{
       position: 'absolute',
       top: 0,
@@ -49,19 +66,20 @@ const styles = StyleSheet.create({
       width:20,
     },
     button:{
-        
+
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
         borderRadius: 20,
         backgroundColor: '#fff',
         padding:13,
-        
+        marginBottom:10,
     },
     text:{
-      paddingLeft:10,
+        paddingLeft:10,
     },
     buttonContainer:{
+        flex:1,
         width:"80%",
     }
 
