@@ -1,23 +1,29 @@
 import * as React from 'react';
 
-import { StyleSheet, Button,Image, Text, View,Pressable,ImageBackground } from 'react-native';
+import { StyleSheet,SafeAreaView,Image, Text, View,Pressable,ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { RouterProps } from '../config/navigation'
 import { GMINA_VIEW } from '../config/paths';
 import logo from '../../assets/kompostownik.png';
 import google from '../../assets/google.png';
+import { Button } from '../components/Button';
 
 export function LoginView({ navigation } : { navigation: RouterProps}) {
   return (
-    <View style={styles.container}>
-            <ImageBackground source={logo} resizeMode="cover" style={styles.background}>
-      </ImageBackground>
+    <SafeAreaView style={styles.container}>
+      <ImageBackground source={logo} resizeMode="cover" style={styles.background}/>
+    <View style={styles.buttonContainer}>
+           
+  
         <Pressable style={styles.button} onPress={() => navigation.navigate(GMINA_VIEW)}>
         <Image style={styles.google} source={google} />
         <Text style={styles.text}>Sign in with google</Text>
-
         </Pressable>
+        <Button   onPress={()=>{}} title='O Aplikacji' disabled={false} />
+
+      
     </View>
+    </SafeAreaView>
   );
 }
 
@@ -49,12 +55,14 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         borderRadius: 20,
         backgroundColor: '#fff',
-        height:50,
-        paddingLeft:10,
-        paddingRight:10,
+        padding:13,
         
     },
     text:{
       paddingLeft:10,
+    },
+    buttonContainer:{
+        width:"80%",
     }
+
   });
