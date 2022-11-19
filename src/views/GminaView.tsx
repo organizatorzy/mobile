@@ -2,6 +2,7 @@ import React from "react";
 import {SafeAreaView, View, Text, StyleSheet, ImageBackground } from "react-native";
 import {Choice} from "../components/Choice"
 import { useEffect } from "react";
+
 import {Button} from "../components/Button"
 import logo from "../../assets/miasto.png"
 export const GminaView = () => {
@@ -11,9 +12,28 @@ export const GminaView = () => {
 
     const [gminy,setGminy] =  React.useState<Array<any>>([{ key: "1", value: "Gej" }]);
 
-  useEffect(()=>{
-    //toDo api calll
-  },[]);
+import { firebaseConfig, db } from "../firebase/config";
+
+import { collection, getDocs } from "firebase/firestore"; 
+
+export const GminaView = () => {
+
+    useEffect(() => {
+        loadGminy();
+      }, []);
+    
+    async function loadGminy() {
+      const querySnapshot = await getDocs(collection(db, "gmina"));
+      let gminy: any  = []
+      querySnapshot.forEach((doc) => {
+        gminy.push(doc.data())
+      })
+      setGminy(gminy);
+    }
+
+
+
+
 
 
 
