@@ -1,10 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { RouterProps } from '../config/navigation'
+import { HOME_VIEW } from '../config/paths'
 
-export default function InstructionView() {
+export const InstructionView = ({ navigation }: RouterProps) => {
   return (
     <View style={styles.container}>
       <Text>This is InstructionView</Text>
+      <Button
+        title="Home"
+        onPress={() => navigation.navigate(HOME_VIEW)}
+      />
     </View>
   );
 }
@@ -18,4 +24,3 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
   });
-  

@@ -1,12 +1,19 @@
-import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import React from 'react'
+import { Button, View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { RouterProps } from '../config/navigation'
+import { INSTRUCTIONS_VIEW } from '../config/paths'
+import logo from '../../assets/kompostownik.png';
 
-export function HomeView() {
+export const HomeView = ({ navigation }: RouterProps) => {
   return (
     <View style={styles.container}>
+      <ImageBackground source={logo} resizeMode="cover" style={styles.background}>
+      </ImageBackground>
       <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Button
+        title="Next"
+        onPress={() => navigation.navigate(INSTRUCTIONS_VIEW)}
+      />
     </View>
   );
 }
@@ -18,4 +25,12 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    background:{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+
+    }
   });
