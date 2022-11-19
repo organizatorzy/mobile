@@ -1,11 +1,17 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Button, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-export function HomeView() {
+export default function HomeView({ navigation } : { navigation: any }) {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text>Open up App.tsx to stop working on your app!</Text>
+      <Button 
+        title="Go to the next page"
+        onPress={() => navigation.navigate('INSTRUCTIONS_SCREEN')} />
+      <Button 
+        title="Go to scanning screen"
+        onPress={() => navigation.navigate('SCANNING_SCREEN')} />
       <StatusBar style="auto" />
     </View>
   );
