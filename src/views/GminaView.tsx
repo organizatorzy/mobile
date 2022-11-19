@@ -3,15 +3,32 @@ import { Button, View, Text, StyleSheet, ImageBackground } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useEffect } from "react";
 
+import { firebaseConfig, db } from "../firebase/config";
+
+import { collection, getDocs } from "firebase/firestore"; 
+
 export const GminaView = () => {
+
+    useEffect(() => {
+        loadGminy();
+      }, []);
+    
+    async function loadGminy() {
+      const querySnapshot = await getDocs(collection(db, "gmina"));
+      let gminy: any  = []
+      querySnapshot.forEach((doc) => {
+        gminy.push(doc.data())
+      })
+      setGminy(gminy);
+    }
+
     const [selected, setSelected] = React.useState("");
 
-    const [regions,setRegions] = React.useState([  { key: "1", value: "Bartek", disabled: false }]);
+    const [regions,setRegions] = React.useState([  { value: "Bartek", disabled: false }]);
 
-    const [gminy,setGminy] = React.useState([{ key: "1", value: "Gej", disabled: false }]);
+    const [gminy,setGminy] = React.useState([{ value: "Gej", disabled: false }]);
 
   useEffect(()=>{
-    //toDo api calll
   },[]);
 
 
