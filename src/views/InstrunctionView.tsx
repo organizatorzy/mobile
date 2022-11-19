@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { RouterProps } from '../config/navigation'
-import { HOME_VIEW } from '../config/paths'
+import { HOME_VIEW,GMINA_VIEW } from '../config/paths'
 
 export const InstructionView = ({ navigation }: RouterProps) => {
   return (
@@ -10,6 +10,10 @@ export const InstructionView = ({ navigation }: RouterProps) => {
       <Button
         title="Home"
         onPress={() => navigation.navigate(HOME_VIEW)}
+      />
+      <Button
+        title="Gmina View"
+        onPress={() => navigation.navigate(GMINA_VIEW)}
       />
     </View>
   );
