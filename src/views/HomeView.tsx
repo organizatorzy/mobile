@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, View, Text, StyleSheet, ImageBackground } from 'react-native';
 import { RouterProps } from '../config/navigation'
-import { INSTRUCTIONS_VIEW } from '../config/paths'
+import { INSTRUCTIONS_VIEW, LOGIN_VIEW } from '../config/paths'
 import logo from '../../assets/kompostownik.png';
 
 export const HomeView = ({ navigation }: RouterProps) => {
@@ -12,7 +12,7 @@ export const HomeView = ({ navigation }: RouterProps) => {
       <Text>Open up App.tsx to start working on your app!</Text>
       <Button
         title="Next"
-        onPress={() => navigation.navigate(INSTRUCTIONS_VIEW)}
+        onPress={() => navigation.navigate(LOGIN_VIEW)}
       />
     </View>
   );
