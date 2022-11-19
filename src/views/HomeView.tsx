@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, View, Text, StyleSheet, ImageBackground } from 'react-native';
 import { RouterProps } from '../config/navigation'
-import { INSTRUCTIONS_VIEW, LOGIN_VIEW } from '../config/paths'
+import { INSTRUCTIONS_VIEW, LOGIN_VIEW, MULTI_CHOICE_VIEW } from '../config/paths'
 import logo from '../../assets/kompostownik.png';
 
 export const HomeView = ({ navigation }: RouterProps) => {

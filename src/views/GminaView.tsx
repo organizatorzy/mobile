@@ -27,19 +27,15 @@ export const GminaView = () => {
 
   return (
     <View style={styles.container}>
-        <div>
         <SelectList
         setSelected={(val: any) => setSelected(val)}
         data={regions}
-        save="value"
-      />
+        save="value" />
 
         <SelectList
         setSelected={(val: any) => setSelected(val)}
         data={gminy}
-        save="value"
-      />
-      </div>
+        save="value" />
     </View>
   );
 
