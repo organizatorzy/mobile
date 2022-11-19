@@ -17,7 +17,6 @@ import { MultiChoiceView } from './src/views/MultiChoiceView';
 
 
 export default function App() {
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={HOME_VIEW}>
