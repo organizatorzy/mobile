@@ -5,10 +5,11 @@ interface ButtonProps {
     title: string;
     onPress: () => void;
     disabled?: boolean;
+    style:any;
 }
 
-export const Button: React.FC<ButtonProps> = ({title, onPress, disabled}) => (
-    <Pressable  style={styles.button} onPress={onPress} disabled={disabled} >
+export const Button: React.FC<ButtonProps> = ({title, onPress, disabled,style}) => (
+    <Pressable  style={[style,styles.button]} onPress={onPress} disabled={disabled} >
         <Text style={styles.text}>{title}</Text>
     </Pressable>
 )
