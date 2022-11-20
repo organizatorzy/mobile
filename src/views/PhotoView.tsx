@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 import { Button } from '../components/Button';
 import { HOME_VIEW } from '../config/paths';
-import { getStorage, ref, uploadString } from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { imag } from '@tensorflow/tfjs';
 import 'react-native-get-random-values'
 import { v4 } from 'uuid'
@@ -43,18 +43,20 @@ export function PhotoView ({ navigation }) {
 
   const takePicture = async () => {
     if (camera) {
-      const data = await camera.takePictureAsync({
-        base64: true,
-      })
-      uploadString(storageRef, data).then((snapshot) => {
-        console.log('Uploaded the image');
-      });
+      // const data = await camera.takePictureAsync()
+
+      // console.log('data');
+      // console.log(data);
+
+      // uploadBytes(storageRef, data).then((snapshot) => {
+      //   console.log('Uploaded a blob or file!');
+      // });
 
 
       const userRef = doc(db, 'compostToAccept', v4())
     setDoc(userRef, {
         date: new Date(),
-        photo: IMG_NAME,
+        photo: '2.jpg',
         ownerId: '2',
         ownerName: 'Wojtek Kremówczak',
         id: v4()
