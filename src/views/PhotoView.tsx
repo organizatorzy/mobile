@@ -6,6 +6,12 @@ import { Button } from '../components/Button';
 import { HOME_VIEW } from '../config/paths';
 import { getStorage, ref, uploadString } from "firebase/storage";
 import { imag } from '@tensorflow/tfjs';
+import 'react-native-get-random-values'
+import { v4 } from 'uuid'
+
+
+import { setDoc, doc } from "firebase/firestore";
+import {db} from '../firebase/config'
 
 
 export function PhotoView ({ navigation }) {
@@ -14,9 +20,10 @@ export function PhotoView ({ navigation }) {
 
   const [camera, setCamera] = useState(null);
   const [imageUri, setImageUri] = useState(null);
+  const IMG_NAME = v4()
 
   const storage = getStorage();
-  const storageRef = ref(storage, 'img');
+  const storageRef = ref(storage, IMG_NAME);
 
   if (!permission) {
     // Camera permissions are still loading
@@ -33,35 +40,6 @@ export function PhotoView ({ navigation }) {
     );
   }
 
-  async function uploadImageAsync(uri) {
-    // Why are we using XMLHttpRequest? See:
-    // https://github.com/expo/expo/issues/2402#issuecomment-443726662
-    const blob = await new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.onload = function() {
-        resolve(xhr.response);
-      };
-      xhr.onerror = function(e) {
-        console.log(e);
-        reject(new TypeError('Network request failed'));
-      };
-      xhr.responseType = 'blob';
-      xhr.open('GET', uri, true);
-      xhr.send(null);
-    });
-
-    const ref = firebase
-      .storage()
-      .ref()
-      .child(uuid.v4());
-    const snapshot = await ref.put(blob);
-
-    // We're done with the blob, close and release it
-    blob.close();
-
-    return await snapshot.ref.getDownloadURL();
-  }
-
 
   const takePicture = async () => {
     if (camera) {
@@ -71,6 +49,17 @@ export function PhotoView ({ navigation }) {
       uploadString(storageRef, data).then((snapshot) => {
         console.log('Uploaded the image');
       });
+
+
+      const userRef = doc(db, 'compostToAccept', v4())
+    setDoc(userRef, {
+        date: new Date(),
+        photo: IMG_NAME,
+        ownerId: '2',
+        ownerName: 'Wojtek Kremówczak',
+        id: v4()
+    });
+
       navigation.navigate(HOME_VIEW);
     }
   };

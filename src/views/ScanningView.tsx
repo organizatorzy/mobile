@@ -10,6 +10,7 @@ import * as FileSystem from 'expo-file-system';
 import { fetch, decodeJpeg } from '@tensorflow/tfjs-react-native';
 import * as tf from '@tensorflow/tfjs';
 import {decode, encode} from 'base-64'
+
 export default function ScanningView() {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
@@ -20,7 +21,7 @@ export default function ScanningView() {
 
   const evaluate = async ()=>{
 
- 
+
 
     await tf.ready();
     let newPhoto = await cameraRef.current.takePictureAsync(null);
@@ -33,9 +34,9 @@ export default function ScanningView() {
     const prediction = await model.classify(imageTensor);
     setLoading(false)
     setCompostable(true)
-    
+
     };
-  
+
 
   if (!permission || !mediaprem!) {
     // Camera permissions are still loading
@@ -55,11 +56,11 @@ export default function ScanningView() {
 
 
   return (
-    
+
     <View style={[styles.container,!isCompostable==undefined?{ backgroundColor:"red" }:{ backgroundColor:"#5DB075" }]}>
 
       {
-isCompostable == undefined?( 
+isCompostable == undefined?(
 
        loading ? (
         <>
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
   out:{
     fontSize:72,
     color:"white"
-    
+
   },
     container: {
       flex: 1,
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
       marginBottom:30
     },
   });
-  
+
 
 
 
