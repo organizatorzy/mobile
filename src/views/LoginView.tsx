@@ -3,14 +3,12 @@ import * as React from 'react';
 import { StyleSheet,SafeAreaView,Image, Text, View,Pressable,ImageBackground,AsyncStorage } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { RouterProps } from '../config/navigation'
-import { GMINA_VIEW, HOME_VIEW } from '../config/paths';
+import { ABOUT_VIEW, GMINA_VIEW, HOME_VIEW } from '../config/paths';
 import logo from '../../assets/kompostownik.png';
 import google from '../../assets/google.png';
 import { Button } from '../components/Button';
 
 export function LoginView({ navigation } : { navigation: RouterProps}) {
-
-
 
 
 
@@ -31,7 +29,7 @@ export function LoginView({ navigation } : { navigation: RouterProps}) {
         <Image style={styles.google} source={google} />
         <Text style={styles.text}>Sign in with google</Text>
         </Pressable>
-        <Button   onPress={()=>{}} title='O Aplikacji' disabled={false} />
+        <Button   onPress={()=>{navigation.navigate(ABOUT_VIEW)}} title='O Aplikacji' disabled={false} />
 
       
     </View>
