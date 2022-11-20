@@ -15,8 +15,12 @@ export function PhotoView ({ navigation }) {
   const [camera, setCamera] = useState(null);
   const [imageUri, setImageUri] = useState(null);
 
+<<<<<<< Updated upstream
   const storage = getStorage();
   const storageRef = ref(storage, 'img');
+=======
+  const user = "Wojtek Kremówka"
+>>>>>>> Stashed changes
 
   if (!permission) {
     // Camera permissions are still loading
@@ -64,6 +68,16 @@ export function PhotoView ({ navigation }) {
 
 
   const takePicture = async () => {
+
+    const dane = {
+      date: Date.now().toLocaleString(),
+      ownerId:2,
+      ownerName:user,
+      photo:"img"
+
+
+    }
+
     if (camera) {
       const data = await camera.takePictureAsync({
         base64: true,

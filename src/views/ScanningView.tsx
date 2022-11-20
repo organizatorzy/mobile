@@ -33,10 +33,9 @@ export default function ScanningView() {
     const prediction = await model.classify(imageTensor);
     setLoading(false)
     setCompostable(true)
-    
-    };
-  
 
+    console.log(prediction)
+  
   if (!permission || !mediaprem!) {
     // Camera permissions are still loading
     return <View />;
@@ -52,8 +51,7 @@ export default function ScanningView() {
     );
   }
 
-
-
+  }
   return (
     
     <View style={[styles.container,!isCompostable==undefined?{ backgroundColor:"red" }:{ backgroundColor:"#5DB075" }]}>
