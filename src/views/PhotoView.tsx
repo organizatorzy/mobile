@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 import { Button } from '../components/Button';
 import { HOME_VIEW } from '../config/paths';
+import { getStorage, ref, uploadString } from "firebase/storage";
+
 
 export function PhotoView ({ navigation }) {
   const [type, setType] = useState(CameraType.back);
@@ -12,6 +14,8 @@ export function PhotoView ({ navigation }) {
   const [camera, setCamera] = useState(null);
   const [imageUri, setImageUri] = useState(null);
 
+  const storage = getStorage();
+  const storageRef = ref(storage, 'img');
 
   if (!permission) {
     // Camera permissions are still loading
@@ -28,14 +32,18 @@ export function PhotoView ({ navigation }) {
     );
   }
 
+
   const takePicture = async () => {
     if (camera) {
-      const data = await camera.takePictureAsync(null);
-      console.log(data.uri);
-      setImageUri(data.uri);
+      const data = await camera.takePictureAsync({
+        base64: true
+      })
+      console.log(uploadImageAsync(data));
       navigation.navigate(HOME_VIEW);
     }
   };
+
+
 
   return (
     <View style={styles.container}>
