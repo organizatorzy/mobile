@@ -15,12 +15,12 @@ export const HomeView = ({ navigation }: RouterProps) => {
             <Button
         title="Dodaj zdjęcie kompostu"
         style={styles.button}
-        onPress={() => navigation.navigate(SCANNING_VIEW)}
+        onPress={() => navigation.navigate(PHOTO_VIEW)}
       />
             <Button
         title="Skanuj przedmiot"
         style={styles.button}
-        onPress={() => navigation.navigate(PHOTO_VIEW)}
+        onPress={() => navigation.navigate(SCANNING_VIEW)}
       />
 
       <Button
