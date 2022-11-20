@@ -3,7 +3,7 @@ import * as React from 'react';
 import { StyleSheet,SafeAreaView,Image, Text, View,Pressable,ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { RouterProps } from '../config/navigation'
-import { GMINA_VIEW } from '../config/paths';
+import { GMINA_VIEW, HOME_VIEW } from '../config/paths';
 import logo from '../../assets/kompostownik.png';
 import google from '../../assets/google.png';
 import { Button } from '../components/Button';
@@ -21,7 +21,7 @@ export function LoginView({ navigation } : { navigation: RouterProps}) {
             backgroundColor: pressed
               ? 'rgb(210, 230, 255)'
               : 'white'
-          },styles.button]} onPress={() => navigation.navigate(GMINA_VIEW)}>
+          },styles.button]} onPress={() => navigation.navigate(HOME_VIEW)}>
         <Image style={styles.google} source={google} />
         <Text style={styles.text}>Sign in with google</Text>
         </Pressable>
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
 
   container: {
     flex:1 ,
-    backgroundColor: '#fff',
     alignItems: 'center',
   },
 

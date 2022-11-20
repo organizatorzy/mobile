@@ -1,29 +1,52 @@
 import React from 'react'
-import { Button, View, Text, StyleSheet, ImageBackground } from 'react-native';
+import {  View, Text, StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { RouterProps } from '../config/navigation'
-import { INSTRUCTIONS_VIEW, LOGIN_VIEW, MULTI_CHOICE_VIEW } from '../config/paths'
+import { INSTRUCTIONS_VIEW, LOGIN_VIEW, MULTI_CHOICE_VIEW ,PHOTO_VIEW, SCANNING_VIEW} from '../config/paths'
 import logo from '../../assets/kompostownik.png';
+import { Button } from '../components/Button';
 
 export const HomeView = ({ navigation }: RouterProps) => {
   return (
-    <View style={styles.container}>
-      <ImageBackground source={logo} resizeMode="cover" style={styles.background}>
-      </ImageBackground>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <SafeAreaView style={styles.container}>
+      <ImageBackground source={logo} resizeMode="cover" style={styles.background}/>
+      <View style={styles.innerConntainer}>
+      <Text style={styles.title}>Kompostonosz</Text>     
+
+            <Button
+        title="Dodaj zdjęcie kompostu"
+        style={styles.button}
+        onPress={() => navigation.navigate(SCANNING_VIEW)}
+      />
+            <Button
+        title="Skanuj przedmiot"
+        style={styles.button}
+        onPress={() => navigation.navigate(PHOTO_VIEW)}
+      />
+
       <Button
-        title="Next"
+        title="O aplikacji"
+        style={styles.button}
         onPress={() => navigation.navigate(LOGIN_VIEW)}
       />
-    </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  button:{
+    marginBottom:20
+  },
+    innerConntainer:{
+      flex: 1,
+    },
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+
       alignItems: 'center',
       justifyContent: 'center',
+
+
     },
     background:{
       position: 'absolute',
@@ -32,5 +55,15 @@ const styles = StyleSheet.create({
       right: 0,
       bottom: 0,
 
-    }
+    },
+    title:{
+      marginTop:40,
+      fontSize:40,
+      fontWeight:"bold",
+      textAlign: "center",
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 'auto',
+    },
+  
   });

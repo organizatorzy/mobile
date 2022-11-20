@@ -19,7 +19,7 @@ import { MultiChoiceView } from './src/views/MultiChoiceView';
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={HOME_VIEW}>
+      <Stack.Navigator initialRouteName={LOGIN_VIEW}>
         <Stack.Screen name={HOME_VIEW} component={HomeView} options={{ headerShown: false }}/>
         <Stack.Screen name={INSTRUCTIONS_VIEW} component={InstructionView} options={{ headerShown: false }} />
         <Stack.Screen name={SCANNING_VIEW} component={ScanningView} options={{ headerShown: false }} />
