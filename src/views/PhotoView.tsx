@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 import { Button } from '../components/Button';
 import { HOME_VIEW } from '../config/paths';
+import { getStorage, ref, uploadString } from "firebase/storage";
+import { imag } from '@tensorflow/tfjs';
+
 
 export function PhotoView ({ navigation }) {
   const [type, setType] = useState(CameraType.back);
@@ -12,6 +15,8 @@ export function PhotoView ({ navigation }) {
   const [camera, setCamera] = useState(null);
   const [imageUri, setImageUri] = useState(null);
 
+  const storage = getStorage();
+  const storageRef = ref(storage, 'img');
 
   if (!permission) {
     // Camera permissions are still loading
@@ -28,14 +33,49 @@ export function PhotoView ({ navigation }) {
     );
   }
 
+  async function uploadImageAsync(uri) {
+    // Why are we using XMLHttpRequest? See:
+    // https://github.com/expo/expo/issues/2402#issuecomment-443726662
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function(e) {
+        console.log(e);
+        reject(new TypeError('Network request failed'));
+      };
+      xhr.responseType = 'blob';
+      xhr.open('GET', uri, true);
+      xhr.send(null);
+    });
+
+    const ref = firebase
+      .storage()
+      .ref()
+      .child(uuid.v4());
+    const snapshot = await ref.put(blob);
+
+    // We're done with the blob, close and release it
+    blob.close();
+
+    return await snapshot.ref.getDownloadURL();
+  }
+
+
   const takePicture = async () => {
     if (camera) {
-      const data = await camera.takePictureAsync(null);
-      console.log(data.uri);
-      setImageUri(data.uri);
+      const data = await camera.takePictureAsync({
+        base64: true,
+      })
+      uploadString(storageRef, data).then((snapshot) => {
+        console.log('Uploaded the image');
+      });
       navigation.navigate(HOME_VIEW);
     }
   };
+
+
 
   return (
     <View style={styles.container}>
