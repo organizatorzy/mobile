@@ -5,18 +5,22 @@ import { useEffect } from "react";
 
 import {Button} from "../components/Button"
 import logo from "../../assets/miasto.png"
-export const GminaView = () => {
-    const [selectedG, setSelectedG] = React.useState<any>("");
-    const [selectedR, setSelectedR] = React.useState<any>("");
-    const [regions,setRegions] = React.useState<Array<any>>([{ key: "1", value: "Gej" }]);
 
-    const [gminy,setGminy] =  React.useState<Array<any>>([{ key: "1", value: "Gej" }]);
 
 import { firebaseConfig, db } from "../firebase/config";
 
 import { collection, getDocs } from "firebase/firestore"; 
 
+
+
 export const GminaView = () => {
+
+
+    const [selectedG, setSelectedG] = React.useState<any>("");
+    const [selectedR, setSelectedR] = React.useState<any>("");
+    const [regions,setRegions] = React.useState<Array<any>>([{ key: "1", value: "Gej" }]);
+
+    const [gminy,setGminy] =  React.useState<Array<any>>([{ key: "1", value: "Gej" }]);
 
     useEffect(() => {
         loadGminy();
