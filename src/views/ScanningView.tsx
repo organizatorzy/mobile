@@ -1,10 +1,10 @@
 
 import * as React from 'react';
-import { StyleSheet, Button, Text, View } from 'react-native';
+import { StyleSheet, Button, Text, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 
-export function ScanningView() {
+export default function ScanningView() {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
 
@@ -52,3 +52,4 @@ const styles = StyleSheet.create({
       color: 'white',
     },
   });
+  

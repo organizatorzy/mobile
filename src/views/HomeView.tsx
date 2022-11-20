@@ -1,7 +1,7 @@
 import React from 'react'
 import {  View, Text, StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { RouterProps } from '../config/navigation'
-import { INSTRUCTIONS_VIEW, LOGIN_VIEW, MULTI_CHOICE_VIEW ,PHOTO_VIEW, SCANNING_VIEW} from '../config/paths'
+import { INSTRUCTIONS_VIEW, LOGIN_VIEW ,PHOTO_VIEW, SCANNING_VIEW,ABOUT_VIEW} from '../config/paths'
 import logo from '../../assets/kompostownik.png';
 import { Button } from '../components/Button';
 
@@ -26,7 +26,7 @@ export const HomeView = ({ navigation }: RouterProps) => {
       <Button
         title="O aplikacji"
         style={styles.button}
-        onPress={() => navigation.navigate(LOGIN_VIEW)}
+        onPress={() => navigation.navigate(ABOUT_VIEW)}
       />
       </View>
     </SafeAreaView>

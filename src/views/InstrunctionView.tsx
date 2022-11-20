@@ -12,7 +12,7 @@ export const InstructionView = ({ navigation }: RouterProps) => {
         onPress={() => navigation.navigate(HOME_VIEW)}
       />
       <Button
-        title="Gmina View"
+        title="Gmina View" 
         onPress={() => navigation.navigate(GMINA_VIEW)}
       />
     </View>
