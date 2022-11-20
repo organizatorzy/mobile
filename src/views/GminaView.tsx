@@ -18,12 +18,13 @@ export const GminaView = () => {
 
     const [selectedG, setSelectedG] = React.useState<any>("");
     const [selectedR, setSelectedR] = React.useState<any>("");
-    const [regions,setRegions] = React.useState<Array<any>>([{ key: "1", value: "Gej" }]);
+    const [regions,setRegions] = React.useState<Array<any>>([]);
 
-    const [gminy,setGminy] =  React.useState<Array<any>>([{ key: "1", value: "Gej" }]);
+    const [gminy,setGminy] =  React.useState<Array<any>>([]);
 
     useEffect(() => {
         loadGminy();
+        loadRegion();
       }, []);
     
     async function loadGminy() {
@@ -35,6 +36,15 @@ export const GminaView = () => {
       setGminy(gminy);
     }
 
+    async function loadRegion() {
+        const querySnapshot = await getDocs(collection(db, "region"));
+        let gminy: any  = []
+        querySnapshot.forEach((doc) => {
+          gminy.push(doc.data())
+        })
+        setRegions(gminy);
+      }
+  
 
 
 
@@ -48,11 +58,11 @@ export const GminaView = () => {
     <View style={styles.containerIn}>
         <Text style={styles.title}>Gdzie znajduje się Twój kompostownik?</Text>
         <Text style ={styles.text}>Przekazanie tej informacji umożliwi Twojej gminie trafne oszacowanie ilości wyprodukowanego kompostu. Ratujesz swoją społeczność od kar!</Text>
-        <View style={{position:"absolute",top:"25%",left:"10%",}}>
+        <View style={{position:"absolute",top:"25%",left:"10%",zIndex:999}}>
         <Text style={styles.label}> Powiat</Text>
         <Choice style={{marginHorizontal:"auto"}} getActive={(data:any)=>{setSelectedR(data)}} active={selectedR.value} data={regions}/>
         </View>
-        <View style={{position:"absolute",top:"40%",left:"10%",}}>
+        <View style={{position:"absolute",top:"40%",left:"10%",zIndex:999}}>
         <Text style={styles.label}>Gmina</Text>
         <Choice style={{marginHorizontal:"auto"}} getActive={(data:any)=>{setSelectedG(data)}} active={selectedG.value} data={gminy}/>
         </View>

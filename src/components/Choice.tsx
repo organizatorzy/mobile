@@ -22,7 +22,7 @@ export const Choice: React.FC<ChoiceProps> = ({data,active,getActive,style}) => 
     console.log(data)
 
     let items : any =data.map(item=>{
-        return <Pressable key={item.key} onPress={()=>{getActive(item)}} style={styles.item}><Text style={styles.itemText}>{item.value}</Text></Pressable>
+        return <Pressable key={item.key} onPress={()=>{getActive(item);setToggle(!toggle);}} style={styles.item}><Text style={styles.itemText}>{item.value}</Text></Pressable>
     })
 
 
