@@ -2,6 +2,8 @@ import React from "react";
 import {SafeAreaView, View, Text, StyleSheet, ImageBackground } from "react-native";
 import {Choice} from "../components/Choice"
 import { useEffect } from "react";
+import { HOME_VIEW, INSTRUCTIONS_VIEW, LOGIN_VIEW, MULTI_CHOICE_VIEW ,PHOTO_VIEW, SCANNING_VIEW} from '../config/paths'
+import { RouterProps } from '../config/navigation'
 
 import {Button} from "../components/Button"
 import logo from "../../assets/miasto.png"
@@ -10,10 +12,11 @@ import logo from "../../assets/miasto.png"
 import { firebaseConfig, db } from "../firebase/config";
 
 import { collection, getDocs } from "firebase/firestore"; 
+import { MultiChoiceView } from "./MultiChoiceView";
 
 
 
-export const GminaView = () => {
+export const GminaView = ({ navigation } : { navigation: RouterProps}) => {
 
 
     const [selectedG, setSelectedG] = React.useState<any>("");
@@ -68,7 +71,7 @@ export const GminaView = () => {
         </View>
  
 
-        <Button style={styles.button}  title="Zapisz lokalizację" onPress={()=>{}}></Button>
+        <Button style={styles.button}   title="Zapisz lokalizację" onPress={() =>  navigation.navigate(HOME_VIEW)}></Button>
       
     </View>
     </SafeAreaView>
